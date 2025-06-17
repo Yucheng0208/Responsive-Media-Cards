@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒體報導區塊</title>
+
+    <!-- CSS 樣式直接放在這裡 -->
+    <style>
+        /* --- 基本設定與變數 --- */
+        :root {
+            --primary-color: #0056b3; /* 主題色，用於按鈕等 */
+            --card-bg: #ffffff;      /* 卡片背景色 */
+            --text-color: #333333;   /* 主要文字顏色 */
+            --date-color: #666666;   /* 日期文字顏色 */
+            --shadow-color: rgba(0, 0, 0, 0.1); /* 預設陰影顏色 */
+            --shadow-hover-color: rgba(0, 0, 0, 0.2); /* Hover 時的陰影顏色 */
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, '蘋方-繁', 'Microsoft JhengHei', sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* --- 區塊主體 --- */
+        .media-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+
+        /* --- 網格容器 (RWD 關鍵) --- */
+        .media-grid {
+            display: grid;
+            /* 手機預設一欄 */
+            grid-template-columns: 1fr; 
+            gap: 2rem;
+        }
+
+        /* --- 報導卡片設計 --- */
+        .media-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden; /* 確保圖片圓角生效 */
+            box-shadow: 0 4px 10px var(--shadow-color);
+            /* 轉場動畫，讓 hover 效果更流暢 */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* --- 懸停效果 (抬高與陰影) --- */
+        .media-card:hover {
+            transform: translateY(-10px); /* 向上移動 10px */
+            box-shadow: 0 12px 24px var(--shadow-hover-color); /* 陰影加深加廣 */
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: inherit; /* 繼承父元素的顏色 */
+            display: block;
+        }
+
+        /* --- 卡片圖片 --- */
+        .card-image-container img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover; /* 讓圖片填滿容器且不變形 */
+            display: block; /* 消除圖片底部的微小空隙 */
+        }
+
+        /* --- 卡片內容 --- */
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-date {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--date-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-description {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        /* --- "更多" 按鈕 --- */
+        .more-button-container {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .btn-more {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-color);
+            color: #ffffff;
+            border-radius: 50px; /* 圓角按鈕 */
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-more:hover {
+            background-color: #004494; /* Hover 時加深顏色 */
+        }
+
+
+        /* --- RWD 響應式設計 --- */
+
+        /* 平板：螢幕寬度大於 768px 時，變為兩欄 */
+        @media (min-width: 768px) {
+            .media-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .section-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        /* 桌機：螢幕寬度大於 1024px 時，變為四欄 */
+        @media (min-width: 1024px) {
+            .media-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="media-section">
+        <h2 class="section-title">媒體報導</h2>
+
+        <!-- 四張圖片的網格容器 -->
+        <div class="media-grid">
+
+            <!-- 卡片 1 -->
+            <article class="media-card">
+                <a href="#" class="card-link">
+                    <div class="card-image-container">
+                        <!-- 提醒：請將 src="..." 換成您自己的圖片路徑 -->
+                        <img src="https://picsum.photos/400/300?random=1" alt="事件一的代表圖片">
+                    </div>
+                    <div class="card-content">
+                        <time class="card-date" datetime="2023-10-26">2023年10月26日</time>
+                        <p class="card-description">這是一段關於事件一的描述，說明了當時發生的情況與媒體報導的重點。</p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 卡片 2 -->
+            <article class="media-card">
+                <a href="#" class="card-link">
+                    <div class="card-image-container">
+                        <!-- 提醒：請將 src="..." 換成您自己的圖片路徑 -->
+                        <img src="https://picsum.photos/400/300?random=2" alt="事件二的代表圖片">
+                    </div>
+                    <div class="card-content">
+                        <time class="card-date" datetime="2023-09-15">2023年09月15日</time>
+                        <p class="card-description">關於事件二的詳細內容，這裡可以放入簡短精要的文字吸引使用者點擊。</p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 卡片 3 -->
+            <article class="media-card">
+                <a href="#" class="card-link">
+                    <div class="card-image-container">
+                        <!-- 提醒：請將 src="..." 換成您自己的圖片路徑 -->
+                        <img src="https://picsum.photos/400/300?random=3" alt="事件三的代表圖片">
+                    </div>
+                    <div class="card-content">
+                        <time class="card-date" datetime="2023-08-01">2023年08月01日</time>
+                        <p class="card-description">這是第三個事件的媒體報導摘要，用來展示多樣的內容呈現方式。</p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- 卡片 4 -->
+            <article class="media-card">
+                <a href="#" class="card-link">
+                    <div class="card-image-container">
+                        <!-- 提醒：請將 src="..." 換成您自己的圖片路徑 -->
+                        <img src="https://picsum.photos/400/300?random=4" alt="事件四的代表圖片">
+                    </div>
+                    <div class="card-content">
+                        <time class="card-date" datetime="2023-07-20">2023年07月20日</time>
+                        <p class="card-description">第四則報導的簡介，確保文字長度適中，讓整體版面看起來更和諧。</p>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+
+        <!-- 更多報導按鈕 -->
+        <div class="more-button-container">
+            <a href="#" class="btn-more">更多媒體報導...</a>
+        </div>
+    </section>
+
+</body>
+</html>
